@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MatrixCalc</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+
+  *{
+    margin: 0;
+    padding: 0;
+  }
+
+
+  body{
+    background: #27211E;
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+  header{
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    background: #27211E;
+  }
+
+  .navbar{
+    height: 80px;
+  }
+
+  ul {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-size: 0.85em;
+  }
+
+  li {
+    display: inline;
+    float: right;
+  }
+
+  li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+  color: white;
+}
+
+.card{
+  width: 100%;
+  height: 449px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  margin: 1em auto;
+  border-radius: 0;
+}
+
+.text_card{
+  width: 50%;
+  height: auto;
+}
+
+.photo_card{
+  width: 50%;
+  background: url('./img/card_image.png') 100% 100% no-repeat;
+  background-size: cover;
+}
+
+.text{
+  width: 70%;
+  margin: 1em auto;
+  text-align: center;
+  font-size: 3em;
+  line-height: 1.2em;
+}
+
+.text_calc{
+  text-align: center;
+  color: #27211E;
+}
+
+.text_button{
+  width: 25%;
+  height: 30px;
+  margin: 3em 38% ;
+  background-color: white;
+  border: 1.5px solid black;
+  box-shadow: 0 0  6px rgba(0,0,0,0.5);
+}
+.text_button a{
+  color: #27211E;
+}
+
+.text_button:hover a,
+.text_button:hover{
+  background-color: #27211E;
+  color: white;
+}
+
+main{
+  color: white;
+  text-align: center;
+  width: 80%;
+  height: auto;
+  margin: 2em auto;
+}
+
+.card_block{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 2em;
+}
+
+.card_block_1{
+  width: 45%;
+  height: 450px;
+  margin-right: 5%;
+}
+
+.card_photo_1{
+  width: 100%;
+  height: 300px;
+  background: url('./img/card_photo_1.png') 100% 100% no-repeat;
+  background-size: cover; 
+}
+
+.card_block_2{
+  width: 45%;
+  height: 450px;  
+}
+
+.card_photo_2{
+  width: 100%;
+  height: 300px;
+  background: url('./img/card_photo_2.png') 100% 100% no-repeat;
+  background-size: cover; 
+}
+
+.card_text_1,
+.card_text_2{
+  margin-top: 2em;
+  text-align: center;
+  width: 100%;
+}
+
+#text{
+  width: 100%;
+  height: 300px;
+  background: white;
+  color: #27211E;
+  margin-top: 2em;
+  padding-top: 2em;
+}
+
+.button{
+  width: 25%;
+  height: 30px;
+  margin: 1em 38% ;
+  background-color: white;
+  border: 1.5px solid black;
+  box-shadow: 0 0  6px rgba(0,0,0,0.5);
+}
+
+.button a{
+  text-decoration: none;
+  color: #27211E;
+}
+
+.button:hover a,
+.button:hover{
+  background-color: #27211E;
+  color: white;
+}
+
+#about{
+  width: 100%;
+  height: 449px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 3em;
+  margin-top: 3em;
+  border-radius: 0;
+}
+
+.text_about{
+  width: 50%;
+  height: auto;
+}
+
+.photo_about{
+  width: 50%;
+  background: url('./img/about_photo.png') 100% 100% no-repeat;
+  background-size: cover;
+}
+
+.contact{
+  width: 70%;
+  margin: 100px auto;
+  color: #27211E;
+  /* background-color: pink; */
+}
+
+.social_media{
+  width: 25%;
+  /* background-color: grey; */
+  margin: 2em auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.social_media a{
+  text-decoration: none;
+  color: #27211E;
+  font-size: 1.2em;
+}
+
+.social_media a:hover{
+  color: #4867AA;
+}
+
+footer{
+  width: 100%;
+  height: 80px;
+  /* background: pink; */
+  display: flex;
+  align-items: center;
+  padding-left: 10%;
+  font-size: 0.8em;
+  color: white;
+}
+
+.social_media_footer{
+  width: 7%;
+  margin: 0 0 1em 55%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.social_media_footer a{
+  text-decoration: none;
+  color: white;
+  font-size: 1.2em;
+}
+
+.social_media a:hover{
+  color: #4867AA;
+}
+
+.link{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  margin-top: 3em;
+  justify-content: space-between;
+}
+
+.block_1,
+.block_2,
+.block_3{
+  width: 27%;
+  height: 450px;
+  border: 1px solid #D0AC68;
+  margin-right: 1%;
+}
+
+.photo_block_1,
+.photo_block_2,
+.photo_block_3{
+  height: 250px;
+  background-size: cover;
+}
+
+.photo_block_1{
+  background: url('./img/block_1.png') 50% 50% no-repeat;
+}
+
+.photo_block_2{
+  background: url('./img/block_2.png') 50% 50% no-repeat;
+}
+
+.photo_block_3{
+  background: url('./img/block_3.png') 50% 50% no-repeat;
+}
+
+.text_block_1,
+.text_block_2,
+.text_block_3{
+  width: 80%;
+  margin: 10px auto;
+  text-align: left;
+}
+
+hr{color: #D0AC68;}
+
+.link_button_1,
+.link_button_2,
+.link_button_3{
+  width: 60%;
+  height: 30px;
+  background: #D0AC68;
+  border: 1px solid #27211E;
+}
+
+.link_button_1 a,
+.link_button_2 a,
+.link_button_3 a{
+  color: #27211E;
+}
+
+.link_button_1 a:hover,
+.link_button_2 a:hover,
+.link_button_3 a:hover{
+  color: white;
+}
+
+</style>
+<body>
+  <header>
+    <nav class="navbar">
+      <ul>
+        <li style="float:left"><img src="./img/logo.png" alt="logo" width="65" height="65"></li>
+        <li><a href="#about">ПРО НАС</a></li>
+        <li><a href="#text">ДОВІДКА</a></li>
+        <li><a href="../MatrixCalc/calculator.html">КАЛЬКУЛЯТОР</a></li>
+        <li><a href="#">ГОЛОВНА</a></li>
+      </ul>
+    </nav>
+    
+    <div class="card">
+      <div class="text_card">
+        <div class="text">MatrixCalc: одразу перейти до дій</div>
+        <div class="text_calc"><em>Калькулятор</em></div>
+        <button class="text_button">
+          <a href="../MatrixCalc/calculator.html"><b>ПЕРЕЙТИ</b></a>
+        </button>
+      </div>
+      <div class="photo_card"></div>
+    </div>
+  </header>
+
+  <main id="main">
+    <h2>Теоретичний матеріал</h2>
+    <br>
+    <p><em>Довідкова інформація з теми</em></p>
+    <div class="card_block">
+      <div class="card_block_1">
+        <div class="card_photo_1"></div>
+        <div class="card_text_1">
+          <p><b>Визначник матриці</b></p>
+          <p style="font-size: 0.7em;">Визначник матриці A зазвичай позначають
+            det(A), |A|, або ∆(A). Визначником другого порядку
+            називається число, яке дорівнює різниці добутків елементів 
+            головної і допоміжної діагоналей.</p>
+        </div>
+      </div>
+      <div class="card_block_2">
+        <div class="card_photo_2"></div>
+        <div class="card_text_2">
+          <p><b>Обернена матриця</b></p>
+          <p style="font-size: 0.7em;">Якщо справа до квадратної матриці дописати одиничну 
+            матрицю того ж порядку і за допомогою елементарних 
+            перетворень над рядками перетворити отриману 
+            матрицю так, щоб початкова матриця стала 
+            одиничною, то матриця, отримана за
+             допомогою одиничної, буде оберненою матрицею 
+            до початкової.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="text">
+      <div style="width: 70%; margin: 0 auto;">
+        <img src="./img/download.png" alt="icon_download" height="30" width="30" style="margin-bottom: 1em;">
+        <p><b>Довідка з теми “Чисельні методи лінійної алгебри”</b></p>
+        <p>Для розуміння отриманого результату в калькуляторі рекомендується ознайомитись з теоретичним матеріалом у додатку з файлом. Теми: “Визначник матриці”, “Обернена матриця”, “Методи розв’язання СЛАР” </p>
+        <button class="button"><a href="file.pdf" download><b>Завантажити</b></a></button> 
+      </div>
+    </div>
+
+    <div class="link">
+      <div class="block_1">
+        <div class="photo_block_1"></div>
+        <div class="text_block_1">
+          <h4>Калькулятор</h4>
+          <hr>
+          <p>Перейти на сторінку<br>
+            див. нижче</p>
+          <button class="link_button_1">
+            <a href="#">Перейти</a>
+          </button>
+        </div>
+      </div>
+
+      <div class="block_2">
+        <div class="photo_block_2"></div>
+        <div class="text_block_2">
+          <h5>Теоретичний матеріал</h5>
+          <hr>
+          <p>Перейти на сторінку<br>
+            див. нижче</p>
+          <button class="link_button_2">
+            <a href="#main">Перейти</a>
+          </button>
+        </div>
+      </div>
+
+      <div class="block_3">
+        <div class="photo_block_3"></div>
+        <div class="text_block_3">
+          <h5>Завантажити довідку</h5>
+          <hr>
+          <p>Перейти на сторінку<br>
+            див. нижче</p>
+          <button class="link_button_3">
+            <a href="#text">Перейти</a>
+          </button>
+        </div>
+      </div>
+
+    </div>
+    
+    <div id="about">
+          <div class="text_about">
+            <div class="contact">
+              <h1>Зворотній зв'язок</h1><br>
+              <p style="text-decoration: underline;">https://www.donnu.edu.ua/uk/#</p>
+              <p><i>general.div@donnu.edu.ua</i></p>
+              <p>DonNU: <b>+380 (432) 50-89-48</b></p>
+              <div class="social_media">
+                <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
+                <a href="https://twitter.com/?lang=en" class="fa fa-twitter"></a>
+                <a href="https://www.linkedin.com/feed/" class="fa fa-linkedin"></a>
+              </div>
+            </div>
+          </div>
+          <div class="photo_about"></div>
+    </div>
+  </main>
+
+  <footer>
+    <div>
+      <p>©2021 MatrixCalc. Сайт створено для donnu.edu.ua</p>
+    </div>
+    <div class="social_media_footer">
+      <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
+      <a href="https://twitter.com/?lang=en" class="fa fa-twitter"></a>
+      <a href="https://www.linkedin.com/feed/" class="fa fa-linkedin"></a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MatrixCalc</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+<script src="./node_modules/mathjs/lib/browser/math.js"  type="text/javascript"></script>
+</head>
+
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+  }
+
+  body{
+    background: #27211E;
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+  header{
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    background: #27211E;
+  }
+
+  .navbar{
+    height: 80px;
+  }
+
+  ul {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-size: 0.85em;
+  }
+
+  li {
+    display: inline;
+    float: right;
+  }
+
+  li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+  li a:hover:not(.active) {
+    background-color: #111;
+    color: white;
+  }
+
+  .condition{
+    width: 80%;
+    height: 280px;
+    background: white;
+    margin: 1em auto;
+    /* text-align: center; */
+    padding-top: 1em;
+  }
+
+  .rows,
+  .columns{
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .functions{
+    width: 70%;
+    margin: 0 auto;  
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
+  }
+
+  .condition_text{
+    width: 72%;  
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #determination,
+  #transpose,
+  #solution{
+    width: 13%;
+    height: 30px;
+    border: 2px solid #27211E;
+    text-align: center;
+    box-shadow: 0 0 6px rgba(0,0,0);
+  }
+
+
+  #determination a,
+  #transpose a,
+  #solution a{
+    color: #27211E;
+  }
+
+
+/*MATRIX*/
+
+.matrix{
+  width: 80%;
+  margin: 5em auto 2em;
+  /* background: green; */
+  height: 350px;
+  display: flex;
+  flex-direction: row;
+}
+
+.A{
+  width: 30%;
+  height: 310px;
+  align-items: center;
+  /* background-color:grey; */
+  font-size: 6em;
+  color: #D0AC68;
+  padding-top: 100px;
+}
+
+
+table{
+  width: auto;
+  height: auto;
+  margin: auto 0;
+}
+
+#equal{
+  width: 20%;
+  height: 30px;
+  background: #D0AC68;
+  border: 1px solid #27211E;
+  margin-left: 45%;
+  margin-bottom: 2em;
+}
+
+table{
+  border-collapse: separate;
+  border-spacing: 20px;
+  border-left: 2px solid #D0AC68;
+  border-right: 2px solid #D0AC68;
+}
+
+td{
+  /* padding: 10px; */
+  width: 10%;
+  border: 2px solid #D0AC68;
+  color: #D0AC68;
+  height: 50px;
+}
+
+input{
+
+  background:#27211E;
+  color: #D0AC68;
+  border: 1px solid #27211E;
+  /* font-size: 2em; */
+  padding: 5px;
+  width: 170px;
+}
+
+#result{
+  background: white;
+  width: 80%;
+  height: 250px;
+  margin: 0 auto;
+  text-align: center;
+  color: #27211E;
+  padding-top: 70px;
+}
+
+footer{
+  width: 100%;
+  height: 80px;
+  /* background: pink; */
+  display: flex;
+  align-items: center;
+  padding-left: 10%;
+  font-size: 0.8em;
+  color: white;
+  margin-top: 20px;
+}
+
+.social_media_footer{
+  width: 7%;
+  margin: 0 0 1em 55%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.social_media_footer a{
+  text-decoration: none;
+  color: white;
+  font-size: 1.2em;
+}
+
+.social_media a:hover{
+  color: #4867AA;
+}
+
+.link{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  margin-top: 3em;
+  justify-content: space-between;
+}
+/*MATRIX*/
+
+/*MENU*/
+.dropbtn {
+  background-color: #D0AC68;
+  color: #27211E;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #27211E; color: white}
+</style>
+
+<body>
+
+  <header>
+    <nav class="navbar">
+      <ul>
+        <li style="float:left"><img src="./img/logo.png" alt="logo" width="65" height="65"></li>
+        <li><a href="../MatrixCalc/index.html#about">ПРО НАС</a></li>
+        <li><a href="../MatrixCalc/index.html#text">ДОВІДКА</a></li>
+        <li><a href="../MatrixCalc/calculator.html">КАЛЬКУЛЯТОР</a></li>
+        <li><a href="../MatrixCalc/index.html">ГОЛОВНА</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <div class="condition">
+      <p style="text-align: center"><b>Оберіть необхідний Вам розмір матриці:</b></p>
+      <div class="rows">
+        <p>Кількість рядків:</p>
+
+
+        <div class="dropdown">
+          <button class="dropbtn"><b>4 x 4</b></button>
+          <div class="dropdown-content">
+            <a href="calculator.html">2 x 2</a>
+            <a href="3x3.html">3 x 3</a>
+            <a href="5x5.html">5 x 5</a>
+          </div>
+        </div>
+
+
+      </div>
+      <!-- <div class="columns">
+        <p>Кількість стовпчиків:</p>
+      </div> -->
+      <p style="text-align: center; margin-top: 1em"><b>Оберіть необхідну функцію:</b></p>
+      <div class="condition_text">
+        <p><small>Знайти визначник</small></p>
+        <p><small>Знайти обернену матрицю</small></p>
+        <p><small>Розв'язати СЛАР</small></p>
+      </div>
+      <div class="functions">
+        <button id="determination"><b>det </b>A</button>
+        <button id="transpose">A<sup><b>-1</b></sup></button>
+        <button id="solution">
+          <a href="SLAR.html">x<sub><b>n</b></sub></a>
+        </button>
+      </div>
+    </div>
+
+    <div class="matrix">
+      <div class="A">
+        <p>A = </p>
+      </div>
+      <table>
+        <tr>
+          <td><input type="number" maxlength="25" size="20" placeholder="0" id="1"></td>
+          <td><input type="number" maxlength="25" size="20" placeholder="0" id="2"></td>
+          <td><input type="number" maxlength="25" size="20" placeholder="0" id="3"></td>
+          <td><input type="number" maxlength="25" size="20" placeholder="0" id="4"></td>
+        </tr>
+        <tr>
+          <td><input type="number" maxlength="25" size="20" placeholder="0" id="5"></td>
+          <td><input type="number" maxlength="25" size="20" placeholder="0" id="6"></td>
+          <td><input type="number" maxlength="25" size="20" placeholder="0" id="7"></td>
+          <td><input type="number" maxlength="25" size="20" placeholder="0" id="8"></td>
+        </tr>
+        <tr>
+          <td><input type="number" maxlength="25" size="20" placeholder="0" id="9"></td>
+          <td><input type="number" maxlength="25" size="20" placeholder="0" id="10"></td>
+          <td><input type="number" maxlength="25" size="20" placeholder="0" id="11"></td>
+          <td><input type="number" maxlength="25" size="20" placeholder="0" id="12"></td>
+        </tr>
+        <tr>
+          <td><input type="number" maxlength="25" size="20" placeholder="0" id="13"></td>
+          <td><input type="number" maxlength="25" size="20" placeholder="0" id="14"></td>
+          <td><input type="number" maxlength="25" size="20" placeholder="0" id="15"></td>
+          <td><input type="number" maxlength="25" size="20" placeholder="0" id="16"></td>
+        </tr>
+      </table>
+      <!-- <div class="B">
+        <p>)</p>
+      </div> -->
+    </div>
+
+    <button value="=" id="equal"><b>РОЗВ'ЯЗАТИ</b></button>
+
+    <div id="result" hidden="true"></div>
+
+
+    <footer>
+      <div>
+        <p>©2021 MatrixCalc. Сайт створено для donnu.edu.ua</p>
+      </div>
+      <div class="social_media_footer">
+        <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
+        <a href="https://twitter.com/?lang=en" class="fa fa-twitter"></a>
+        <a href="https://www.linkedin.com/feed/" class="fa fa-linkedin"></a>
+      </div>
+    </footer>
+  </main>
+  <script>
+
+    var determination = document.getElementById('determination');
+    var transpose = document.getElementById('transpose');
+    var solution = document.getElementById('solution');
+
+    determination.onclick = function() {
+      document.getElementById('determination').style.background = '#D0AC68';
+      document.getElementById('transpose').style.background = 'white';
+      document.getElementById('solution').style.background = 'white';
+      document.getElementById('result').style.paddingTop = '70px';
+      document.getElementById('result').style.fontSize = '2.3em';
+      var equal = document.getElementById('equal');
+
+      equal.onclick = function() {
+        const x1 = document.getElementById('1').value
+        const x2 = document.getElementById('2').value
+        const x3 = document.getElementById('3').value
+        const x4 = document.getElementById('4').value
+        const x5 = document.getElementById('5').value
+        const x6 = document.getElementById('6').value
+        const x7 = document.getElementById('7').value
+        const x8 = document.getElementById('8').value
+        const x9 = document.getElementById('9').value
+        const x10 = document.getElementById('10').value
+        const x11 = document.getElementById('11').value
+        const x12 = document.getElementById('12').value
+        const x13 = document.getElementById('13').value
+        const x14 = document.getElementById('14').value
+        const x15 = document.getElementById('15').value
+        const x16 = document.getElementById('16').value
+        const deter = math.det([[x1, x2, x3, x4], [x5, x6, x7, x8], [x9, x10, x11, x12], [x13, x14, x15, x16]])
+        result.innerHTML = 'det A = ' + deter;
+        document.getElementById("result").removeAttribute("hidden")
+      }
+      document.getElementById("result").innerHTML = "";
+    }
+
+    transpose.onclick = function() {
+      document.getElementById('determination').style.background = 'white';
+      document.getElementById('transpose').style.background = '#D0AC68';
+      document.getElementById('solution').style.background = 'white';
+      document.getElementById('result').style.paddingTop = '20px';
+      document.getElementById('result').style.fontSize = '1.65em';
+
+      var equal = document.getElementById('equal');
+
+      equal.onclick = function() {
+        const x1 = document.getElementById('1').value
+        const x2 = document.getElementById('2').value
+        const x3 = document.getElementById('3').value
+        const x4 = document.getElementById('4').value
+        const x5 = document.getElementById('5').value
+        const x6 = document.getElementById('6').value
+        const x7 = document.getElementById('7').value
+        const x8 = document.getElementById('8').value
+        const x9 = document.getElementById('9').value
+        const x10 = document.getElementById('10').value
+        const x11 = document.getElementById('11').value
+        const x12 = document.getElementById('12').value
+        const x13 = document.getElementById('13').value
+        const x14 = document.getElementById('14').value
+        const x15 = document.getElementById('15').value
+        const x16 = document.getElementById('16').value
+        const transpose = math.ctranspose([[x1, x2, x3, x4], [x5, x6, x7, x8], [x9, x10, x11, x12], [x13, x14, x15, x16]])
+        result.innerHTML = 'transpose A' + '<br>' + transpose[0][0] + '\r\n' + transpose[0][1] + '\r\n' + transpose[0][2] + '\r\n' + transpose[0][3] + '<br>' + transpose[1][0] + '\r\n' + transpose[1][1] + '\r\n' + transpose[1][2] + '\r\n' + transpose[1][3] + '<br>' + transpose[2][0] + '\r\n' + transpose[2][1] + '\r\n' + transpose[2][2] + '\r\n' + transpose[2][3] + '<br>' + transpose[3][0] + '\r\n' + transpose[3][1] + '\r\n' + transpose[3][2] + '\r\n' + transpose[3][3];
+        
+        document.getElementById("result").removeAttribute("hidden")
+        
+      }
+      document.getElementById("result").innerHTML = "";
+    }
+
+    solution.onclick = function() {
+      document.getElementById('determination').style.background = 'white';
+      document.getElementById('transpose').style.background = 'white';
+      document.getElementById('solution').style.background = '#D0AC68';
+    }
+
+  </script>
+</body>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MatrixCalc</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+<script src="./node_modules/mathjs/lib/browser/math.js"  type="text/javascript"></script>
+</head>
+
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+  }
+
+  body{
+    background: #27211E;
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+  header{
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    background: #27211E;
+  }
+
+  .navbar{
+    height: 80px;
+  }
+
+  ul {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-size: 0.85em;
+  }
+
+  li {
+    display: inline;
+    float: right;
+  }
+
+  li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+  li a:hover:not(.active) {
+    background-color: #111;
+    color: white;
+  }
+
+  .condition{
+    width: 80%;
+    height: 310px;
+    background: white;
+    margin: 1em auto;
+    /* text-align: center; */
+    padding-top: 1em;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rows,
+  .columns{
+    width: 90%;
+    margin: 0 auto;
+    display: flex; 
+    flex-direction: row;
+  }
+
+  .functions{
+    width: 70%;
+    margin: 0 auto;  
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
+  }
+
+  .condition_text{
+    width: 72%;  
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #determination,
+  #transpose,
+  #solution{
+    width: 13%;
+    height: 30px;
+    border: 2px solid #27211E;
+    text-align: center;
+    box-shadow: 0 0 6px rgba(0,0,0);
+  }
+
+  #determination a,
+  #transpose a,
+  #solution a{
+    color: #27211E;
+  }
+
+  /* #determination{
+    background-color: #D0AC68;
+  } */
+
+/*MATRIX*/
+
+.matrix{
+  /* width: 80%; */
+  margin: 5em 1em 2em;
+  /* background: green; */
+  height: 250px;
+  display: flex;
+  flex-direction: row;
+}
+
+.sign{
+  width: 8%;
+  height: 195px;
+  background: url('./img/SLAR.png') 100% 100% no-repeat;
+  background-size: cover;
+}
+
+table{
+  width: 60%;
+  height: auto;
+  margin-top: 20px;
+}
+
+#equal{
+  width: 20%;
+  height: 30px;
+  background: #D0AC68;
+  border: 1px solid #27211E;
+  margin-left: 40%;
+  margin-bottom: 2em;
+  margin-top: 1em;
+}
+
+#download{
+  width: 20%;
+  height: 32px;
+  background: #D0AC68;
+  border: 1px solid #27211E;
+  margin-bottom: 2em;
+  margin-top: 1em;
+  font-size: 0.9em;
+}
+
+#download a{
+  color: #272727;
+}
+
+table{
+  border-collapse: separate;
+  border-spacing: 20px;
+}
+
+td{
+  /* padding: 10px; */
+  width: 10%;
+  border: 2px solid #D0AC68;
+  color: #D0AC68;
+  height: 50px;
+}
+
+input{
+  background:#27211E;
+  color: #D0AC68;
+  border: 1px solid #27211E;
+  /* font-size: 2em; */
+  padding: 0 5px;
+  width: 80px;
+}
+
+#result{
+  background: white;
+  width: 80%;
+  height: 250px;
+  margin: 0 auto;
+  text-align: center;
+  color: #27211E;
+  font-size: 1.4em;
+  padding-top: 70px;
+}
+
+footer{
+  width: 100%;
+  height: 80px;
+  /* background: pink; */
+  display: flex;
+  align-items: center;
+  padding-left: 10%;
+  font-size: 0.8em;
+  color: white;
+  margin-top: 20px;
+}
+
+.social_media_footer{
+  width: 7%;
+  margin: 0 0 1em 55%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.social_media_footer a{
+  text-decoration: none;
+  color: white;
+  font-size: 1.2em;
+}
+
+.social_media a:hover{
+  color: #4867AA;
+}
+
+.link{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  margin-top: 3em;
+  justify-content: space-between;
+}
+/*MATRIX*/
+
+/*MENU*/
+.dropbtn {
+  background-color: #D0AC68;
+  color: #27211E;
+  padding: 5px 20px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-left: 2%;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #27211E; color: white}
+
+
+.x1{
+  background: url(./img/x1.png) 100% 100% no-repeat;
+  width: 130px;
+  height: 53px;
+}
+
+.x2{
+  background: url(./img/x2+.png) 100% 100% no-repeat;
+  width: 130px;
+  height: 53px;
+}
+
+.x3{
+  background: url(./img/x3+.png) 100% 100% no-repeat;
+  width: 130px;
+  height: 53px;
+}
+
+.x4{
+  background: url(./img/x4=.png) 100% 100% no-repeat;
+  width: 130px;
+  height: 53px;
+}
+
+.td{
+  border: 0px solid white;
+  margin-right: -20px;
+}
+</style>
+
+<body>
+
+  <header>
+    <nav class="navbar">
+      <ul>
+        <li style="float:left"><img src="./img/logo.png" alt="logo" width="65" height="65"></li>
+        <li><a href="../MatrixCalc/index.html">ПРО НАС</a></li>
+        <li><a href="../MatrixCalc/index.html">ДОВІДКА</a></li>
+        <li><a href="../MatrixCalc/calculator.html">КАЛЬКУЛЯТОР</a></li>
+        <li><a href="../MatrixCalc/index.html">ГОЛОВНА</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <div class="condition">
+      <p style="text-align: center"><b>Оберіть необхідний Вам розмір матриці:</b></p>
+      <div class="rows">
+        <p>Кількість рядків:</p>
+
+        <div class="dropdown">
+          <button class="dropbtn"><b>2</b></button>
+          <div class="dropdown-content">
+            <a href="3x4.html">3</a>
+            <a href="4x4.html">4</a>
+          </div>
+        </div>
+      </div>
+      <br>
+        <div class="columns">
+          <p>Кількість стовпчиків:</p>
+  
+          <div class="dropdown">
+            <button class="dropbtn"><b>4</b></button>
+            <div class="dropdown-content">
+              <a href="SLAR.html">2</a>
+              <a href="SLAR_2x3.html">3</a>
+            </div>
+          </div>
+        </div>
+
+      <!-- <div class="columns">
+        <p>Кількість стовпчиків:</p>
+      </div> -->
+      <p style="text-align: center; margin-top: 1em"><b>Оберіть необхідну функцію:</b></p>
+      <div class="condition_text">
+        <p><small>Знайти визначник</small></p>
+        <p><small>Знайти обернену матрицю</small></p>
+        <p><small>Розв'язати СЛАР</small></p>
+      </div>
+      <div class="functions">
+        <button id="determination">
+          <a href="calculator.html"><b>det </b>A</a>
+        </button>
+        <button id="transpose">
+          <a href="calculator.html">A<sup><b>-1</b></sup></a>
+        </button>
+        <button id="solution">x<sub><b>n</b></sub></button>
+      </div>
+    </div>
+
+    <div class="matrix">
+      <div class="sign"></div>
+      <table>
+        <tr>
+          <td><input type="number" maxlength="20" size="15" placeholder="0" id="1"></td>
+          <td class="td"><div class="x1"></div></td>
+          <td><input type="number" maxlength="20" size="15" placeholder="0" id="2"></td>
+          <td class="td"><div class="x2"></div></td>
+          <td><input type="number" maxlength="20" size="15" placeholder="0" id="3"></td>
+          <td class="td"><div class="x3"></div></td>
+          <td><input type="number" maxlength="20" size="15" placeholder="0" id="x1"></td>
+          <td class="td"><div class="x4"></div></td>
+          <td><input type="number" maxlength="20" size="15" placeholder="0" id="x1"></td>
+        </tr>
+        <tr>
+          <td><input type="number" maxlength="20" size="15" placeholder="0" id="4"></td>
+          <td class="td"><div class="x1"></div></td>
+          <td><input type="number" maxlength="20" size="15" placeholder="0" id="5"></td>
+          <td class="td"><div class="x2"></div></td>
+          <td><input type="number" maxlength="20" size="15" placeholder="0" id="6"></td>
+          <td class="td"><div class="x3"></div></td>
+          <td><input type="number" maxlength="20" size="15" placeholder="0" id="x2"></td>
+          <td class="td"><div class="x4"></div></td>
+          <td><input type="number" maxlength="20" size="15" placeholder="0" id="x1"></td>
+        </tr>
+      </table>
+    </div>
+
+    <button id="equal"><b>РОЗВ'ЯЗАТИ</b></button>
+
+    <div id="result" hidden="true">
+      <p>СИСТЕМА НЕ МАЄ РОЗВ'ЯЗКІВ</p>
+      <p><small class="small">Для пояснення чому, завантажити файл</small></p>
+      <button id="download"><a href="file.pdf" download><b>Завантажити</b></a></button>
+    </div>
+
+
+    <footer>
+      <div>
+        <p>©2021 MatrixCalc. Сайт створено для donnu.edu.ua</p>
+      </div>
+      <div class="social_media_footer">
+        <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
+        <a href="https://twitter.com/?lang=en" class="fa fa-twitter"></a>
+        <a href="https://www.linkedin.com/feed/" class="fa fa-linkedin"></a>
+      </div>
+    </footer>
+  </main>
+  <script>
+
+    var determination = document.getElementById('determination');
+    var transpose = document.getElementById('transpose');
+    var solution = document.getElementById('solution');
+
+    determination.onclick = function() {
+      document.getElementById('determination').style.background = '#D0AC68';
+      document.getElementById('transpose').style.background = 'white';
+      document.getElementById('solution').style.background = 'white';
+      document.getElementById('result').style.paddingTop = '70px';
+      var equal = document.getElementById('equal');
+
+      equal.onclick = function() {
+        let a = document.getElementById('1').value
+        let b = document.getElementById('2').value
+        let c = document.getElementById('3').value
+        let d = document.getElementById('4').value
+        let deter = math.det([[a, b], [c, d]])
+        result.innerHTML = 'det A = ' + deter;
+        document.getElementById("result").removeAttribute("hidden")
+      }
+      document.getElementById("result").innerHTML = "";
+    }
+
+    transpose.onclick = function() {
+      document.getElementById('determination').style.background = 'white';
+      document.getElementById('transpose').style.background = '#D0AC68';
+      document.getElementById('solution').style.background = 'white';
+      document.getElementById('result').style.paddingTop = '20px';
+
+      var equal = document.getElementById('equal');
+
+      equal.onclick = function() {
+        let a = document.getElementById('1').value
+        let b = document.getElementById('2').value
+        let c = document.getElementById('3').value
+        let d = document.getElementById('4').value
+        let transpose = math.ctranspose([[a, b], [c, d]])
+        result.innerHTML = 'transpose A' + '<br>' + transpose[0][0] + '\r\n' + transpose[0][1] + '<br>' + transpose[1][0] + '\r\n' + transpose[1][1];
+        document.getElementById("result").removeAttribute("hidden")
+        
+      }
+      document.getElementById("result").innerHTML = "";
+    }
+
+    solution.onclick = function() {
+      document.getElementById('determination').style.background = 'white';
+      document.getElementById('transpose').style.background = 'white';
+      document.getElementById('solution').style.background = '#D0AC68';
+      document.getElementById('result').style.paddingTop = '40px';
+
+      var equal = document.getElementById('equal');
+
+      equal.onclick = function() {
+        document.getElementById("result").removeAttribute("hidden")
+      }
+    }
+
+  </script>
+</body>
